@@ -1,10 +1,10 @@
-package pglp_5;
+package bd;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class Bd 
 {
     public static void main( String[] args )
     {

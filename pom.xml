@@ -2,18 +2,61 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>pglp_5.2</groupId>
-  <artifactId>pglp_5.2</artifactId>
+  <groupId>pglp_5.1</groupId>
+  <artifactId>pglp_5.1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>pglp_5.2</name>
+  <name>pglp_5.1</name>
   <url>http://maven.apache.org</url>
-
-  <properties>
+ <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  <build>
+  <plugins>
+   <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.1</version>
+        <configuration>
+        </configuration>
+      </plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.1.0</version>
 
+            <configuration>
+                <configLocation>./checkstyle.xml</configLocation>
+            </configuration>
+
+</plugin>
+  </plugins>
+  </build>
+     
+  
+  <reporting>
+  	<plugins>
+  	 <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.1.0</version>
+            <reportSets>
+            	<reportSet>
+            		<reports>
+            			<report>checkstyle</report>
+            		</reports>
+            	</reportSet>
+            </reportSets>
+        </plugin>
+      
+  	</plugins>
+  </reporting>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -21,5 +64,9 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+ 
+
   </dependencies>
+  
 </project>
+
