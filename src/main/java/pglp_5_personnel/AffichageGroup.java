@@ -17,7 +17,7 @@ public class AffichageGroup implements Annu  {
 		return personnes;
 	}
 	private String nom; 
-    
+     
 	private int id;
 	
     public int getId() {

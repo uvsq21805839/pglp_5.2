@@ -23,7 +23,7 @@ public class JDBCAnnuaireNumDAO extends Dao_ConnectionBd<AnnuaireNum>{
 	        String createtel="CREATE TABLE Telephones("
                  + "id_num int,"
                  + "numero varchar(30),"
-                 + "type varchar(30),"
+                 + "type varchar(30)," 
                  + "PRIMARY KEY (id_num)"
                  + ")";
 	         Statement stmt = getConnect().createStatement();

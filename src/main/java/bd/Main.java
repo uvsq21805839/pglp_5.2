@@ -10,7 +10,8 @@ import pglp_5_personnel.AnnuaireNum;
 import pglp_5_personnel.DAOFactoryJDBC;
 import pglp_5_personnel.Personnel;
 import pglp_5_personnel.JDBCAnnuaireNumDAO;
-import pglp_5_personnel.Personnel.Builder;;
+import pglp_5_personnel.Personnel.Builder;
+import bd.Vue;
 public class Main {
 
 
@@ -19,21 +20,23 @@ public class Main {
 	public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException  {
 		  Dao_ConnectionBd<AnnuaireNum> numjdbc;
 		   AnnuaireNum cell =new AnnuaireNum(1,"0022373080580", "cell");
-		   AnnuaireNum cell1 =new AnnuaireNum(2,"0751078000", "cell");
+		
 		 
 		   numjdbc = DAOFactoryJDBC.getJDBCAnnuaireNumDAO();
-		  ((JDBCAnnuaireNumDAO) numjdbc).createtable(); 
-		  
+		  ((JDBCAnnuaireNumDAO) numjdbc).createtable();  
+		 
+		 
 		  
 		   
 		  @SuppressWarnings("unused")
 		Dao_ConnectionBd<Personnel> persojdbc;
-		    Builder b = new Builder(1,"Sekou", "Diawara", "employee",LocalDate.of(1991, 9, 12));
-		    Builder b1 = new Builder(2,"Mamby", "Diawara", "employee",LocalDate.of(1989, 11, 14));
+		    Builder b = new Builder(1,"Sekou", "Diawara", "Administrateur",LocalDate.of(1991, 9, 12));
+		    Builder b1 = new Builder(2,"Mamby", "Diawara", "programmeur",LocalDate.of(1989, 11, 14));
 		   persojdbc=DAOFactoryJDBC.getJDBCPersonnelDao();
 		   b.numtelephone(cell);
 		
 		   Personnel employee=b.build();
+		   Personnel employee1=b1.build(); 
 		
 		   Dao_ConnectionBd<AffichageGroup> grpJDBC =new DAOFactoryJDBC().getAffichageGroup();
 		
@@ -42,13 +45,16 @@ public class Main {
 		   @SuppressWarnings("unused")
 		AffichageGroup service =new AffichageGroup(2, "Service");
 	        societe.add(employee);
+	        societe.add(employee1);
 	        ((AffichageGroupDao) grpJDBC).createtable();
 	        grpJDBC.create(societe);
 	      
-	        ((AffichageGroupDao) grpJDBC).displayTable();
+	       // ((AffichageGroupDao) grpJDBC).displayTable();
 	        ((AffichageGroupDao) grpJDBC).displayPersoByGrp(); 
-
+	       
 
 		   
-	  }
+	 
+	       
+  }
 }

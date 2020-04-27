@@ -102,7 +102,7 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
         update.setInt(1, obj.getId());
         update.setString(2, obj.getNom());
         update.executeUpdate();
-        update.close();
+        update.close(); 
         
         Personnel p;
         AffichageGroup gp;
@@ -234,7 +234,7 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
                     
                     rs.close();
                 }	
-	}
+	} 
 
 
 

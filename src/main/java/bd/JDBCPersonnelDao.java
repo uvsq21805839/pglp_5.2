@@ -31,6 +31,7 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
                 +"fonction varchar(30),"
                 +"date_naissance varchar(30),"
                 + "PRIMARY KEY (id_pers)"
+               
                 + ")";
 	      
 	         Statement stmt = getConnect().createStatement();
@@ -173,7 +174,7 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 	                        while (rs.next()) {
 	                            System.out.printf("%d\t\t%d\t%n",
 	                                    rs.getInt("id_pers"),
-	                                    rs.getInt("id_num"));
+	                                    rs.getInt("id_num")); 
 	                        }
 	                        
 	                        rs.close();
