@@ -17,10 +17,10 @@ implements Annu, Iterable<Annu>,Serializable {
 	private final int id;
 	
 	private static int idNext = 1;
-	
+	 
 	public PersonnelCompsitePattern() {
 		id = idNext+1;
-		personnels = new ArrayList<Annu>();
+		personnels = new ArrayList<Annu>(); 
 	}
 	
 	public void print() {

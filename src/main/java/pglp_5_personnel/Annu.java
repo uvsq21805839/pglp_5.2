@@ -1,18 +1,8 @@
 package pglp_5_personnel;
 
-public interface Annu
-{
-     public void printAnnuaireName();
-     
-     
-     
+import java.io.Serializable;
 
-
+public  interface Annu {
 	public void print();
-	
- 
-
-	
 }
-
 
