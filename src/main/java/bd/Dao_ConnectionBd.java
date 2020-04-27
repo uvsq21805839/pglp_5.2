@@ -42,7 +42,7 @@ public abstract class Dao_ConnectionBd  <T>{
 	  
     }
     /**
-     * creation
+     * creation DAO
      */
    
 
