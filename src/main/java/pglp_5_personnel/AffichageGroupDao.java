@@ -33,14 +33,14 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 	public void createtable() throws SQLException {
 		 DatabaseMetaData bd = getConnect().getMetaData();
 	        ResultSet rs = bd.getTables(null, null,
-	                "Groupe".toUpperCase(), null);
+	                "AffichageGroup".toUpperCase(), null);
 
 	        Statement stmt = getConnect().createStatement();
 	            if (!rs.next()) {
-	            	stmt.executeUpdate("Create Table Groupe"
+	            	stmt.executeUpdate("Create Table AffichageGroup"
 	                        + " (id_grp int primary key, nom varchar(30))");
 	            }	
-	            System.out.println("Table   Telephones Create Successfully Groupe ");
+	            System.out.println("Table   Telephones Create Successfully AffichageGroup ");
 	            rs.close();
 	            stmt.close();
 	}
@@ -59,7 +59,7 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
                        + "id_pers int, "
                        + "primary key (id_grp, id_pers),"
                        + "foreign key (id_grp) references"
-                       + " Groupe(id_grp), "
+                       + " AffichageGroup(id_grp), "
                        + "foreign key (id_pers)"
                        + "references Personnes(id_pers))");
            }
@@ -84,9 +84,9 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
                        + "id_sousgrp int, "
                        + "primary key (id_grp, id_sousgrp),"
                        + "foreign key (id_grp) references"
-                       + " Groupe(id_grp), "
+                       + " AffichageGroup(id_grp), "
                        + "foreign key (id_sousgrp)"
-                       + " references Groupe(id_grp))");
+                       + " references AffichageGroup(id_grp))");
            }
                stmt.executeUpdate("insert into"
                        + " groupeingrp values ("
@@ -96,7 +96,7 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 	}
 	@Override
 	public AffichageGroup create(AffichageGroup obj) throws IOException, SQLException {
-		 String insertgrp = ("insert into Groupe values ("
+		 String insertgrp = ("insert into AffichageGroup values ("
                 + "?, ? )");
         PreparedStatement update =getConnect().prepareStatement(insertgrp);
         update.setInt(1, obj.getId());
@@ -125,9 +125,9 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 	public AffichageGroup find(int id) throws IOException, ClassNotFoundException, SQLException {
 		AffichageGroup grp = null;
        Statement stmt = getConnect().createStatement();
-       ResultSet rs = stmt.executeQuery("select * from Groupe"
+       ResultSet rs = stmt.executeQuery("select * from AffichageGroup"
                            + " where id_grp=" + id);
-                   System.out.println("Research table Groupe: \n");
+                   System.out.println("Research table AffichageGroup: \n");
 	                System.out.println("id_grp\t nom");
                        if (rs.next()) {
                        	 System.out.printf("%d\t%s%n", rs.getInt("id_grp"),
@@ -143,12 +143,12 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 	public AffichageGroup update(AffichageGroup obj) throws IOException, SQLException {
 		 Statement stmt = getConnect().createStatement();
 	     ResultSet result = stmt.executeQuery("select *"
-	                    + "from Groupe where id_grp="
+	                    + "from AffichageGroup where id_grp="
 	                    + obj.getId());
 	                if (result.next()) {
 	                	this.delete(obj);
 	                    this.create(obj);
-	                    System.out.println("Table Updated Groupe Successfully");
+	                    System.out.println("Table Updated AffichageGroup Successfully");
 	                }
 	                stmt.close();
 	               
@@ -159,11 +159,11 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 	public void delete(AffichageGroup obj) throws SQLException {
 		Statement stmt = getConnect().createStatement();
 		
-       ResultSet rs = stmt.executeQuery("select * from Groupe where id_grp=" + obj.getId());
+       ResultSet rs = stmt.executeQuery("select * from AffichageGroup where id_grp=" + obj.getId());
            if(rs.next()) {
            	stmt.executeUpdate("delete from groupeingrp where id_grp="+obj.getId());
            	stmt.executeUpdate("delete from group_personne where id_grp="+obj.getId());
-          	  stmt.executeUpdate("delete from Groupe where id_grp="+obj.getId());
+          	  stmt.executeUpdate("delete from AffichageGroup where id_grp="+obj.getId());
            	 System.out.printf("Ligne supprimée \n");
           
            } 
@@ -174,20 +174,20 @@ private Dao_ConnectionBd<Personnel> persoJDBC;
 		Statement stmt = getConnect().createStatement();
 		stmt.execute("DROP TABLE group_personne");
 		stmt.execute("DROP TABLE groupeingrp");
-       stmt.execute("DROP TABLE Groupe");
+       stmt.execute("DROP TABLE AffichageGroup");
    	stmt.close();
    	System.out.println("Tables supprimées \n");
 		
 	}
-	public void affichetable() throws SQLException {
+	public void displayTable() throws SQLException {
 		 DatabaseMetaData bd = getConnect().getMetaData();
 
-	        ResultSet rs = bd.getTables(null, null,"Groupe".toUpperCase(), null);
+	        ResultSet rs = bd.getTables(null, null,"AffichageGroup".toUpperCase(), null);
 	        Statement stmt = getConnect().createStatement();
 	        
-	    	rs = stmt.executeQuery("SELECT * FROM Groupe");
+	    	rs = stmt.executeQuery("SELECT * FROM AffichageGroup");
 
-	         System.out.println("Table Groupe: \n");
+	         System.out.println("Table AffichageGroup: \n");
 	         System.out.println("id_grp\t nom");
 	         while (rs.next()) {
 	             System.out.printf("%d\t%s%n", rs.getInt("id_grp"),

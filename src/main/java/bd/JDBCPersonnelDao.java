@@ -25,12 +25,12 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
    	 DatabaseMetaData bd = getConnect().getMetaData();
 	        ResultSet rs = bd.getTables(null, null,"Personnes".toUpperCase(), null);
 	        String createperso="CREATE TABLE Personnes("
-                + "id_perso int,"
+                + "id_pers int,"
                 + "nom varchar(30),"
                 + "prenom varchar(30),"
                 +"fonction varchar(30),"
                 +"date_naissance varchar(30),"
-                + "PRIMARY KEY (id_perso)"
+                + "PRIMARY KEY (id_pers)"
                 + ")";
 	      
 	         Statement stmt = getConnect().createStatement();
@@ -48,11 +48,11 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 	   	 DatabaseMetaData bd = getConnect().getMetaData();
 	        ResultSet rs = bd.getTables(null, null,"Association".toUpperCase(), null);
 		 String assoc="Create Table Association"
-                  + " (id_perso int,"
+                  + " (id_pers int,"
                   + " id_num int, "
-                  + "primary key (id_perso, id_num),"
-                  + "foreign key (id_perso) references"
-                  + " Personnes(id_perso),"
+                  + "primary key (id_pers, id_num),"
+                  + "foreign key (id_pers) references"
+                  + " Personnes(id_pers),"
                   + "foreign key (id_num) references"
                   + " Telephones(id_num))";
 		  Statement stmt = getConnect().createStatement();
@@ -89,11 +89,11 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 		Personnel perso = null;
         Statement stmt = getConnect().createStatement();
         ResultSet rs = stmt.executeQuery("select * from Personnes"
-                            + " where id_perso=" + id);
+                            + " where id_pers=" + id);
                     System.out.println("La ligne rechercher dans la table Personnes: \n");
-	                System.out.println("id_perso\t nom\t prenom\t fonction\t date naissance");
+	                System.out.println("id_pers\t nom\t prenom\t fonction\t date naissance");
                         if (rs.next()) {
-                        	 System.out.printf("%d\t%s \t%s\t %s\t %s%n", rs.getInt("id_perso"),
+                        	 System.out.printf("%d\t%s \t%s\t %s\t %s%n", rs.getInt("id_pers"),
             	                     rs.getString("nom"), rs.getString("prenom"),
             	                     rs.getString("fonction"),rs.getString("date_naissance"));
             	         
@@ -107,7 +107,7 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 
 	public Personnel update(Personnel obj) throws IOException, SQLException {
 		Statement stmt = getConnect().createStatement();
-	    ResultSet result = stmt.executeQuery("select * from Personnes where id_perso=" + obj.getId());
+	    ResultSet result = stmt.executeQuery("select * from Personnes where id_pers=" + obj.getId());
 	                if (result.next()) {
 	                	this.delete(obj);
 	                    this.create(obj);
@@ -120,13 +120,13 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 	public void delete(Personnel obj) throws SQLException {
 		Statement stmt = getConnect().createStatement();
 		int id_num;
-        ResultSet rs = stmt.executeQuery("select * from Association where id_perso=" + obj.getId());
+        ResultSet rs = stmt.executeQuery("select * from Association where id_pers=" + obj.getId());
             if(rs.next()) {
             	id_num = rs.getInt("id_num");
-              stmt.executeUpdate("delete from Association where id_perso="+obj.getId()+"and id_num="+id_num);
-              stmt.executeUpdate("delete from persoingroupe where id_perso="+obj.getId());
+              stmt.executeUpdate("delete from Association where id_pers="+obj.getId()+"and id_num="+id_num);
+              stmt.executeUpdate("delete from persoingroupe where id_pers="+obj.getId());
               stmt.executeUpdate("delete from Telephones where id_num="+id_num);
-           	  stmt.executeUpdate("delete from Personnes where id_perso="+obj.getId());
+           	  stmt.executeUpdate("delete from Personnes where id_pers="+obj.getId());
             	 System.out.printf("Ligne supprimée \n");
            
             }
@@ -150,9 +150,9 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 	    	rs = stmt.executeQuery("SELECT * FROM Personnes");
 
 	         System.out.println("Table Personnes: \n");
-	         System.out.println("id_perso\t nom\t prenom\t fonction\t date naissance");
+	         System.out.println("id_pers\t nom\t prenom\t fonction\t date naissance");
 	         while (rs.next()) {
-	             System.out.printf("%d\t%s \t%s\t %s\t %s%n", rs.getInt("id_perso"),
+	             System.out.printf("%d\t%s \t%s\t %s\t %s%n", rs.getInt("id_pers"),
 	                     rs.getString("nom"), rs.getString("prenom"),
 	                     rs.getString("fonction"),rs.getString("date_naissance"));
 	         }
@@ -169,10 +169,10 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
 	                    ResultSet rs = stmt.executeQuery("SELECT *"
 	                            + " FROM Association");
 	                        System.out.println("Table Association:\n");
-	                        System.out.println("id_perso\t id_num\t");
+	                        System.out.println("id_pers\t id_num\t");
 	                        while (rs.next()) {
 	                            System.out.printf("%d\t\t%d\t%n",
-	                                    rs.getInt("id_perso"),
+	                                    rs.getInt("id_pers"),
 	                                    rs.getInt("id_num"));
 	                        }
 	                        

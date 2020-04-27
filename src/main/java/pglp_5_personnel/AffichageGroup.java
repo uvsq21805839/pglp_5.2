@@ -76,7 +76,7 @@ public class AffichageGroup implements Annu  {
 	        } else if (!personnes.equals(autre.personnes))
 	            return false;
 	        if (nom == null) {
-	            if (autre.nom != null)
+	            if (autre.nom != null) 
 	                return false;
 	        } else if (!nom.equals(autre.nom))
 	            return false;

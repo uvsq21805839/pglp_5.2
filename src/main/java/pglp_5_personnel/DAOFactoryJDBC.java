@@ -15,7 +15,7 @@ public class DAOFactoryJDBC {
 			return new JDBCPersonnelDao(); 
 		}
 	
-    public static Dao_ConnectionBd<AffichageGroup> getGroupe() throws IOException, SQLException{
+    public static Dao_ConnectionBd<AffichageGroup>getAffichageGroup() throws IOException, SQLException{
 		        return new AffichageGroupDao();
 		        
 		 }

@@ -60,7 +60,7 @@ public abstract class Dao_ConnectionBd  <T>{
     					+ "id VARCHAR(100),"
     					+ "nom VARCHAR(100)"
     					+ ")"); 
-
+ 
     			state.addBatch(
     					"CREATE TABLE personnels ("
     					+ "nom VARCHAR(100) PRIMARY KEY,"
