@@ -27,7 +27,7 @@ public abstract class Dao_ConnectionBd  <T>{
 	  Connection conn;   
 	  
 	 public  Dao_ConnectionBd() {
-		 try { 
+		 try {  
 			 this.conn = DriverManager.getConnection(JDBC_URL); 
 			 
 			 if (this.conn !=null) {
@@ -46,34 +46,6 @@ public abstract class Dao_ConnectionBd  <T>{
      */
    
 
-    	public void dropCreateTables() {
-    		try (Connection connect =  this.conn = DriverManager.getConnection(JDBC_URL)) {
-    			Statement state = connect.createStatement();
-    			state.addBatch("DROP TABLE personnelGroupes");
-    			state.addBatch("DROP TABLE appartient");
-    			state.addBatch("DROP TABLE personnels");
-    			state.addBatch("CREATE TABLE personnelGroupes ("
-    					+ "id VARCHAR(100) PRIMARY KEY"
-    					+ ")");
-    			state.addBatch(
-    					"CREATE TABLE appartient ("
-    					+ "id VARCHAR(100),"
-    					+ "nom VARCHAR(100)"
-    					+ ")"); 
- 
-    			state.addBatch(
-    					"CREATE TABLE personnels ("
-    					+ "nom VARCHAR(100) PRIMARY KEY,"
-    					+ "prenom VARCHAR(100) NOT NULL,"
-    					+ "fonction VARCHAR(100) NOT NULL"
-    					// + "date_NAISSANCE DATE"
-    					+ ")");
-    			state.executeBatch();
-    		} catch (SQLException e) {
-    			e.printStackTrace();
-    		}	
-    	}
-    	
 
 
 public abstract T create(T obj) throws IOException, SQLException;
