@@ -42,19 +42,19 @@ public class Main {
 		
 	       
 		   AffichageGroup societe =new AffichageGroup(1,"Societe");
-		   @SuppressWarnings("unused")
-		AffichageGroup service =new AffichageGroup(2, "Service");
+		  // @SuppressWarnings("unused")
+	//	AffichageGroup service =new AffichageGroup(2, "Service");
 	        societe.add(employee);
-	        societe.add(employee1);
+	     //   societe.add(employee1);
 	        ((AffichageGroupDao) grpJDBC).createtable();
-	        grpJDBC.create(societe);
+	       // grpJDBC.create(societe);
 	      
-	       // ((AffichageGroupDao) grpJDBC).displayTable();
-	        ((AffichageGroupDao) grpJDBC).displayPersoByGrp(); 
-	       
+	       //((AffichageGroupDao) grpJDBC).displayTable();
+	        ((AffichageGroupDao) grpJDBC).displayPersoByGrp();
 
-		   
-	 
+
+
+
 	       
   }
 }

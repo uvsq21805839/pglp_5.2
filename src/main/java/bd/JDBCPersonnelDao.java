@@ -53,9 +53,9 @@ public class JDBCPersonnelDao extends Dao_ConnectionBd<Personnel>{
                   + " id_num int, "
                   + "primary key (id_pers, id_num),"
                   + "foreign key (id_pers) references"
-                  + " Personnes(id_pers),"
+                  + "Personnes(id_pers),"
                   + "foreign key (id_num) references"
-                  + " Telephones(id_num))";
+                  + "Telephones(id_num))";
 		  Statement stmt = getConnect().createStatement();
           if (!rs.next()) {
 		  stmt.execute(assoc);
